@@ -13,11 +13,11 @@ type GatsbyLinkProps = {
 } & CategoryItemProps
 
 export type CategoryListProps = {
-  selectedCategory: string
-  categoryList: {
-    [key: string]: number
+    selectedCategory: string
+    categoryList: {
+      [key: string]: number
+    }
   }
-}
 
 const CategoryListWrapper = styled.div`
   display: flex;
@@ -33,24 +33,23 @@ const CategoryListWrapper = styled.div`
 `
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-// active 파라미터가 사용되지 않아 뜨는 경고문을 무시하기 위한 용도
 const CategoryItem = styled(({ active, ...props }: GatsbyLinkProps) => (
-    <Link {...props} />
-  ))<CategoryItemProps>`
-    margin-right: 20px;
-    padding: 5px 0;
-    font-size: 18px;
-    font-weight: ${({ active }) => (active ? '800' : '400')};
-    cursor: pointer;
-  
-    &:last-of-type {
-      margin-right: 0;
-    }
-  
-    @media (max-width: 768px) {
-      font-size: 15px;
-    }
-  `
+  <Link {...props} />
+))<CategoryItemProps>`
+  margin-right: 20px;
+  padding: 5px 0;
+  font-size: 18px;
+  font-weight: ${({ active }) => (active ? '800' : '400')};
+  cursor: pointer;
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
+`
 
 const CategoryList: FunctionComponent<CategoryListProps> = function ({
     selectedCategory,

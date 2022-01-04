@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
 import { Link } from 'gatsby'
-import { GatsbyImage } from 'gatsby-plugin-image'
 import { PostFrontmatterType } from 'types/PostItem.types'
+import { GatsbyImage } from 'gatsby-plugin-image'
 
 type PostItemProps = PostFrontmatterType & { link: string }
 
@@ -31,6 +31,7 @@ const PostItemContent = styled.div`
   flex-direction: column;
   padding: 15px;
 `
+
 const Title = styled.div`
   display: -webkit-box;
   overflow: hidden;

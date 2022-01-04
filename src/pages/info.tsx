@@ -24,7 +24,6 @@ const globalStyle = css`
     font-size: 20px;
   }
 `
-
 const TextStyle = css`
   font-size: 18px;
   font-weight: 700;
@@ -37,14 +36,15 @@ const Text1 = styled.div<{ disable: boolean }>`
   font-weight: 700;
   text-decoration: ${({ disable }) => (disable ? 'line-through' : 'none')};
 `
+
 // Camel Case 적용
 const Text2 = styled('div')<{ disable: boolean }>(({ disable }) => ({
-  fontSize: '15px',
-  color: 'blue',
-  textDecoration: disable ? 'line-through' : 'none',
-}))
+    fontSize: '15px',
+    color: 'blue',
+    textDecoration: disable ? 'line-through' : 'none',
+  }))
 
-const InfoPage: FunctionComponent<InfoPageProps> = function ({
+  const InfoPage: FunctionComponent<InfoPageProps> = function ({
     data: {
       site: {
         siteMetadata: { title, description, author },
@@ -54,7 +54,7 @@ const InfoPage: FunctionComponent<InfoPageProps> = function ({
     return (
       <div>
         <Global styles={globalStyle} />
-        {/* <div css={TextStyle}>{title}</div> */}
+        <div css={TextStyle}>{title}</div>
         <Text1 disable={true}>{description}</Text1>
         <Text2 disable={true}>{author}</Text2>
       </div>

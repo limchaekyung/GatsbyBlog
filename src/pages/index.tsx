@@ -9,6 +9,22 @@ import { graphql } from 'gatsby'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
 import queryString, { ParsedQuery } from 'query-string'
 
+type IndexPageProps = {
+  location: {
+    search: string
+  }
+  data: {
+    allMarkdownRemark: {
+      edges: PostListItemType[]
+    }
+    file: {
+      childImageSharp: {
+        gatsbyImageData: IGatsbyImageData
+      }
+    }
+  }
+}
+
 export type PostFrontmatterType = {
   title: string
   date: string
@@ -25,22 +41,6 @@ export type PostListItemType = {
   node: {
     id: string
     frontmatter: PostFrontmatterType
-  }
-}
-
-type IndexPageProps = {
-  location: {
-    search: string
-  }
-  data: {
-    allMarkdownRemark: {
-      edges: PostListItemType[]
-    }
-    file: {
-      childImageSharp: {
-        gatsbyImageData: IGatsbyImageData
-      }
-    }
   }
 }
 
@@ -80,7 +80,9 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
             if (list[category] === undefined) list[category] = 1;
             else list[category]++;
           });
+
           list['All']++;
+
           return list;
         },
         { All: 0 },
@@ -102,7 +104,6 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
   )
 }
 
-
 export default IndexPage
 
 export const getPostList = graphql`
@@ -120,15 +121,7 @@ export const getPostList = graphql`
             categories
             thumbnail {
               childImageSharp {
-                gatsbyImageData(
-                  quality: 100
-                  placeholder: BLURRED
-                  formats: [AUTO, WEBP, AVIF]
-                  transformOptions: {fit: INSIDE}
-                  layout: CONSTRAINED
-                  width: 768
-                  height: 200
-                )
+                gatsbyImageData(width: 768, height: 400)
               }
             }
           }

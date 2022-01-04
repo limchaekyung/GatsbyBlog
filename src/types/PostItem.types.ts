@@ -4,10 +4,10 @@ export type PostFrontmatterType = {
     categories: string[]
     summary: string
     thumbnail: {
-      publicURL: string
+        publicURL: string
     }
-  }
-  
+}
+
 export type PostListItemType = {
     node: {
         id: string
