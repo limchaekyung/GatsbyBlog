@@ -9,22 +9,6 @@ import { graphql } from 'gatsby'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
 import queryString, { ParsedQuery } from 'query-string'
 
-type IndexPageProps = {
-  location: {
-    search: string
-  }
-  data: {
-    allMarkdownRemark: {
-      edges: PostListItemType[]
-    }
-    file: {
-      childImageSharp: {
-        gatsbyImageData: IGatsbyImageData
-      }
-    }
-  }
-}
-
 export type PostFrontmatterType = {
   title: string
   date: string
@@ -41,6 +25,22 @@ export type PostListItemType = {
   node: {
     id: string
     frontmatter: PostFrontmatterType
+  }
+}
+
+type IndexPageProps = {
+  location: {
+    search: string
+  }
+  data: {
+    allMarkdownRemark: {
+      edges: PostListItemType[]
+    }
+    file: {
+      childImageSharp: {
+        gatsbyImageData: IGatsbyImageData
+      }
+    }
   }
 }
 
@@ -114,6 +114,9 @@ export const getPostList = graphql`
       edges {
         node {
           id
+          fields{
+            slug
+          }
           frontmatter {
             title
             summary

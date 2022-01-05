@@ -1,10 +1,17 @@
 import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
 import { Link } from 'gatsby'
-import { PostFrontmatterType } from 'types/PostItem.types'
 import { GatsbyImage } from 'gatsby-plugin-image'
+import { PostFrontmatterType } from 'types/PostItem.types'
 
 type PostItemProps = PostFrontmatterType & { link: string }
+
+export type PostListItemType = {
+  node: {
+    id: string
+    frontmatter: PostFrontmatterType
+  }
+}
 
 const PostItemWrapper = styled(Link)`
   display: flex;

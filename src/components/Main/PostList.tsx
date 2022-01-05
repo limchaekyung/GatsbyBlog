@@ -6,25 +6,26 @@ import useInfiniteScroll, {
   useInfiniteScrollType,
 } from 'hooks/useInfiniteScroll'
 
+
 export type PostType = {
-    node: {
-      id: string
-      frontmatter: {
-        title: string
-        summary: string
-        date: string
-        categories: string[]
-        thumbnail: {
-          publicURL: string
-        }
+  node: {
+    id: string
+    frontmatter: {
+      title: string
+      summary: string
+      date: string
+      categories: string[]
+      thumbnail: {
+        publicURL: string
       }
     }
   }
-  
-  type PostListProps = {
-    selectedCategory: string
-    posts: PostListItemType[]
-  }
+}
+
+type PostListProps = {
+  selectedCategory: string
+  posts: PostListItemType[]
+}
 
 const PostListWrapper = styled.div`
   display: grid;
@@ -52,9 +53,17 @@ const PostList: FunctionComponent<PostListProps> = function ({
 
   return (
     <PostListWrapper ref={containerRef}>
-      {postList.map(({ node: { id, frontmatter } }: PostListItemType) => (
-        <PostItem {...frontmatter} link="https://www.google.co.kr/" key={id} />
-      ))}
+      {postList.map(
+        ({
+          node: {
+            id,
+            fields: { slug },
+            frontmatter,
+          },
+        }: PostListItemType) => (
+          <PostItem {...frontmatter} link={slug} key={id} />
+        ),
+      )}
     </PostListWrapper>
   )
 }
