@@ -8,6 +8,7 @@ import PostList, { PostType } from 'components/Main/PostList'
 import { graphql } from 'gatsby'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
 import queryString, { ParsedQuery } from 'query-string'
+import Template from 'components/Common/Template'
 
 export type PostFrontmatterType = {
   title: string
@@ -64,7 +65,6 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
     typeof parsed.category !== 'string' || !parsed.category
       ? 'All'
       : parsed.category
-
   const categoryList = useMemo(
     () =>
       edges.reduce(
@@ -80,9 +80,7 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
             if (list[category] === undefined) list[category] = 1;
             else list[category]++;
           });
-
           list['All']++;
-
           return list;
         },
         { All: 0 },
@@ -91,16 +89,14 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
   )
 
   return (
-    <Container>
-      <GlobalStyle />
+    <Template>
       <Introduction profileImage={gatsbyImageData} />
       <CategoryList
         selectedCategory={selectedCategory}
         categoryList={categoryList}
       />
       <PostList selectedCategory={selectedCategory} posts={edges} />
-      <Footer />
-    </Container>
+    </Template>
   )
 }
 
@@ -114,7 +110,7 @@ export const getPostList = graphql`
       edges {
         node {
           id
-          fields{
+          fields {
             slug
           }
           frontmatter {

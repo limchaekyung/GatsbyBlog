@@ -6,7 +6,6 @@ import useInfiniteScroll, {
   useInfiniteScrollType,
 } from 'hooks/useInfiniteScroll'
 
-
 export type PostType = {
   node: {
     id: string
