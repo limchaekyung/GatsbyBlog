@@ -3,7 +3,7 @@ module.exports = {
     title: `chae Blog`,
     description: `주니어 개발자로서의 저를 표현한 블로그입니다.`,
     author: `Chae`,
-    siteUrl: 'https://limchaekyung.github.io/',
+    siteUrl: 'https://limchaekyung.github.io/GatsbyBlog/',
   },
   plugins: [
     {
@@ -42,7 +42,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-canonical-urls',
       options: {
-        siteUrl: 'https://limchaekyung.github.io/',
+        siteUrl: 'https://limchaekyung.github.io/GatsbyBlog/',
         stripQueryString: true,
       },
     },
